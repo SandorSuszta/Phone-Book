@@ -61,5 +61,3 @@ extension ContactsViewController {
         //TODO: handle tap
     }
 }
-
-

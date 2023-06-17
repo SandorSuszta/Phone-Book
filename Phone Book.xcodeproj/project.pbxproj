@@ -12,6 +12,7 @@
 		79E216702A3E3A910091DA4D /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2166F2A3E3A910091DA4D /* ContactsViewController.swift */; };
 		79E216752A3E3A950091DA4D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 79E216742A3E3A950091DA4D /* Assets.xcassets */; };
 		79E216782A3E3A950091DA4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79E216762A3E3A950091DA4D /* LaunchScreen.storyboard */; };
+		79E216822A3E45A80091DA4D /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216812A3E45A80091DA4D /* NewContactViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		79E216742A3E3A950091DA4D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		79E216772A3E3A950091DA4D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79E216792A3E3A950091DA4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79E216812A3E45A80091DA4D /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 		79E2166A2A3E3A910091DA4D /* Phone Book */ = {
 			isa = PBXGroup;
 			children = (
+				79E216832A3E47010091DA4D /* Views */,
 				79E2167F2A3E3ADA0091DA4D /* Application */,
 				79E216802A3E3C100091DA4D /* ViewControllers */,
 				79E216792A3E3A950091DA4D /* Info.plist */,
@@ -76,8 +79,16 @@
 			isa = PBXGroup;
 			children = (
 				79E2166F2A3E3A910091DA4D /* ContactsViewController.swift */,
+				79E216812A3E45A80091DA4D /* NewContactViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		79E216832A3E47010091DA4D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,6 +163,7 @@
 			files = (
 				79E216702A3E3A910091DA4D /* ContactsViewController.swift in Sources */,
 				79E2166C2A3E3A910091DA4D /* AppDelegate.swift in Sources */,
+				79E216822A3E45A80091DA4D /* NewContactViewController.swift in Sources */,
 				79E2166E2A3E3A910091DA4D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
