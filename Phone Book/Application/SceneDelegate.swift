@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let scene = (scene as? UIWindowScene) else { return }
@@ -21,6 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let rootNavController = UINavigationController(rootViewController: rootVC)
         window.rootViewController = rootNavController
         window.makeKeyAndVisible()
+        
+        if AppLaunchesCounterService.shared.shouldShowAlert() {
+            AppLaunchesCounterService.shared.showOpenCountAlert(in: rootNavController)
+        }
         
         self.window = window
     }
