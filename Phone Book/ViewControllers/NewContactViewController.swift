@@ -1,8 +1,14 @@
 import UIKit
 
+protocol NewContactViewControllerDelegate: AnyObject {
+    func contactSaved()
+}
+
 final class NewContactViewController: UIViewController {
     
     private let contactService = ContactService()
+    
+    weak var delegate: NewContactViewControllerDelegate?
     
     //MARK: - UI Elements
     
@@ -120,6 +126,7 @@ extension NewContactViewController {
             phoneNumber: phoneTextField.text ?? ""
         )
         contactService.saveContact(contact: contact)
+        delegate?.contactSaved()
         navigationController?.popViewController(animated: true)
     }
 }

@@ -1,6 +1,6 @@
 import UIKit
 
-final class ContactsViewController: UIViewController {
+final class ContactsViewController: UIViewController, NewContactViewControllerDelegate {
     
     private var contacts: [User] = [] {
         didSet {
@@ -74,11 +74,19 @@ extension ContactsViewController {
 extension ContactsViewController {
     
     @objc private func didTapAddContact() {
-        navigationController?.pushViewController(NewContactViewController(), animated: true)
+        let vc = NewContactViewController()
+        vc.delegate = self
+        navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc private func didTapAddCSettings() {
         navigationController?.pushViewController(SettingsViewController(), animated: true)
+    }
+    
+    //MARK: - NewContactVC delegate
+    
+    func contactSaved() {
+        loadContacts()
     }
 }
 
