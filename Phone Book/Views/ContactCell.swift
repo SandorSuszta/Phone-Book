@@ -45,7 +45,6 @@ final class ContactCell: UITableViewCell {
         imageView?.image = model.avatar
         nameLabel.text = model.name
         phoneLabel.text = model.phoneNumber
-        
     }
 }
 
@@ -54,8 +53,8 @@ final class ContactCell: UITableViewCell {
 extension ContactCell {
     
     private enum Constants {
-        static let padding: CGFloat = 8
-        static let smallPadding: CGFloat = 4
+        static let padding: CGFloat =       8
+        static let smallPadding: CGFloat =  4
     }
     
     private func setupViewHierarchy() {

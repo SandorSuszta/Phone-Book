@@ -8,7 +8,7 @@ struct User {
     init(
         name: String,
         phoneNumber: String,
-        avatar: UIImage = UIImage(named: "//defaultAvatar") ?? UIImage()
+        avatar: UIImage = UIImage()
     ){
         self.name = name
         self.phoneNumber = phoneNumber

@@ -42,6 +42,7 @@ extension ContactsViewController {
     private func setupVC() {
         view.backgroundColor = .systemBackground
         view.addSubview(contactsTableView)
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     private func setupNavBar() {
@@ -72,7 +73,7 @@ extension ContactsViewController {
 extension ContactsViewController {
     
     @objc private func didTapAddContact() {
-        //TODO: handle tap
+        navigationController?.pushViewController(NewContactViewController(), animated: true)
     }
     
     @objc private func didTapAddCSettings() {
