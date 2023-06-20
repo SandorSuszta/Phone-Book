@@ -2,18 +2,13 @@ import UIKit
 
 final class ContactsViewController: UIViewController {
     
-    private let mockUsers: [User] = [
-        User(name: "John Doe", phoneNumber: "1234567890"),
-        User(name: "Jane Smith", phoneNumber: "0987654321"),
-        User(name: "Michael Johnson", phoneNumber: "9876543210"),
-        User(name: "Emily Davis", phoneNumber: "0123456789"),
-        User(name: "David Wilson", phoneNumber: "5678901234"),
-        User(name: "Olivia Brown", phoneNumber: "9012345678"),
-        User(name: "James Taylor", phoneNumber: "4567890123"),
-        User(name: "Sophia Anderson", phoneNumber: "3456789012"),
-        User(name: "Alexander Martinez", phoneNumber: "8901234567"),
-        User(name: "Emma Wilson", phoneNumber: "6789012345")
-    ]
+    private var contacts: [User] = [] {
+        didSet {
+            contactsTableView.reloadData()
+        }
+    }
+    
+    private let contactService = ContactService()
     
     //MARK: - UI Elements
     
@@ -32,6 +27,7 @@ final class ContactsViewController: UIViewController {
         super.viewDidLoad()
         setupVC()
         setupNavBar()
+        loadContacts()
     }
 }
 
@@ -66,6 +62,11 @@ extension ContactsViewController {
             target: self,
             action: #selector(didTapAddCSettings))
     }
+    
+    private func loadContacts() {
+        let savedContacts = contactService.loadAllContacts()
+        contacts = savedContacts.sorted { $0.name < $1.name }
+    }
 }
 
     //MARK: - Selectors
@@ -86,7 +87,7 @@ extension ContactsViewController {
 extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        mockUsers.count
+        contacts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,7 +95,7 @@ extension ContactsViewController: UITableViewDelegate, UITableViewDataSource {
             return UITableViewCell()
         }
         
-        cell.configure(with: mockUsers[indexPath.row])
+        cell.configure(with: contacts[indexPath.row])
         
         return cell
     }

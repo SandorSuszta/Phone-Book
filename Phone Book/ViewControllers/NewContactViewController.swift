@@ -2,6 +2,8 @@ import UIKit
 
 final class NewContactViewController: UIViewController {
     
+    private let contactService = ContactService()
+    
     //MARK: - UI Elements
     
     private var avatarImageView: UIImageView = {
@@ -112,9 +114,13 @@ extension NewContactViewController {
         presentBottomSheet()
     }
     
-    
     @objc private func didTapButton() {
-
+        let contact = User(
+            name: nameTextField.text ?? "",
+            phoneNumber: phoneTextField.text ?? ""
+        )
+        contactService.saveContact(contact: contact)
+        navigationController?.popViewController(animated: true)
     }
 }
 

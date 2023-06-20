@@ -9,6 +9,7 @@ final class ContactService {
     
     //MARK: -  API
     
+    
     func loadAllContacts() -> [User] {
         var contacts: [User] = []
         
