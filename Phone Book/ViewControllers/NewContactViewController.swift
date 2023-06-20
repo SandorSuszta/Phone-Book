@@ -67,6 +67,7 @@ final class NewContactViewController: UIViewController {
         setupNavBar()
         setupViewHierarchy()
         setupConstraints()
+        addGestureRecogniserToAvatarView()
     }
 }
 
@@ -88,9 +89,27 @@ extension NewContactViewController {
         avatarImageView.addGestureRecognizer(tapGesture)
     }
     
+    private func presentBottomSheet() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        let cameraOptionAction = UIAlertAction(title: "Choose from camera", style: .default) { _ in
+        }
+        alertController.addAction(cameraOptionAction)
+        
+        let galleryOptionAction = UIAlertAction(title: "Choose from gallery", style: .default) { _ in
+        }
+        alertController.addAction(galleryOptionAction)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
     //MARK: - Selectors
     
     @objc private func didTapAvatar() {
+        presentBottomSheet()
     }
     
     
