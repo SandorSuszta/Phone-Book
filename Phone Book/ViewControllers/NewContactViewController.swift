@@ -1,7 +1,8 @@
 import UIKit
+import AVFoundation
 
 protocol NewContactViewControllerDelegate: AnyObject {
-    func contactSaved()
+    func didSaveContact()
 }
 
 final class NewContactViewController: UIViewController {
@@ -10,13 +11,14 @@ final class NewContactViewController: UIViewController {
     
     weak var delegate: NewContactViewControllerDelegate?
     
+    private var selectedImage: UIImage?
+    
     //MARK: - UI Elements
     
-    private var avatarImageView: UIImageView = {
-        let imageView = UIImageView()
+    private var avatarImageView: RoundedImageView = {
+        let imageView = RoundedImageView()
         imageView.image = UIImage(systemName: "person.crop.circle.badge.plus")
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         return imageView
     }()
@@ -101,10 +103,12 @@ extension NewContactViewController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         
         let cameraOptionAction = UIAlertAction(title: "Choose from camera", style: .default) { _ in
+            self.presentCameraPicker()
         }
         alertController.addAction(cameraOptionAction)
         
         let galleryOptionAction = UIAlertAction(title: "Choose from gallery", style: .default) { _ in
+            self.presentGalleryPicker()
         }
         alertController.addAction(galleryOptionAction)
         
@@ -112,6 +116,20 @@ extension NewContactViewController {
         alertController.addAction(cancelAction)
         
         present(alertController, animated: true, completion: nil)
+    }
+    
+    private func presentCameraPicker() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    private func presentGalleryPicker() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        present(imagePicker, animated: true, completion: nil)
     }
     
     //MARK: - Selectors
@@ -126,7 +144,7 @@ extension NewContactViewController {
             phoneNumber: phoneTextField.text ?? ""
         )
         contactService.saveContact(contact: contact)
-        delegate?.contactSaved()
+        delegate?.didSaveContact()
         navigationController?.popViewController(animated: true)
     }
 }
@@ -194,5 +212,23 @@ extension NewContactViewController {
             addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.padding),
             addButton.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight)
         ])
+    }
+}
+
+//MARK: - ImagePicker delegate
+
+extension NewContactViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        
+        if let image = info[.originalImage] as? UIImage {
+            selectedImage = image
+            avatarImageView.image = image
+        }
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }

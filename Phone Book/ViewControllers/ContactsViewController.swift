@@ -85,7 +85,7 @@ extension ContactsViewController {
     
     //MARK: - NewContactVC delegate
     
-    func contactSaved() {
+    func didSaveContact() {
         loadContacts()
     }
 }
