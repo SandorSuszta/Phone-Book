@@ -15,17 +15,27 @@ final class ContactCell: UITableViewCell {
         return imageView
     }()
     
-    let nameLabel: UILabel = {
+    private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .label
         return label
     }()
     
-    let phoneLabel: UILabel = {
+    private let phoneLabel: UILabel = {
         let label = UILabel()
         label.textColor = .secondaryLabel
         return label
     }()
+    
+    //MARK: - API
+    
+    func configure(with model: User) {
+        DispatchQueue.main.async {
+            self.imageView?.image = model.avatar
+            self.nameLabel.text = model.name
+            self.phoneLabel.text = model.phoneNumber
+        }
+    }
 }
 
     //MARK: - Setup Views
