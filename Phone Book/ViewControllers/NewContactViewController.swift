@@ -11,13 +11,13 @@ final class NewContactViewController: UIViewController {
     
     weak var delegate: NewContactViewControllerDelegate?
     
-    private var selectedImage: UIImage?
+    private var selectedImageURL: URL?
     
     //MARK: - UI Elements
     
     private var avatarImageView: RoundedImageView = {
         let imageView = RoundedImageView()
-        imageView.image = UIImage(systemName: "person.crop.circle.badge.plus")
+        imageView.image = UIImage(systemName: "person.crop.circle")
         imageView.contentMode = .scaleAspectFill
         imageView.isUserInteractionEnabled = true
         return imageView
@@ -139,9 +139,10 @@ extension NewContactViewController {
     }
     
     @objc private func didTapButton() {
-        let contact = User(
+        let contact = Contact(
             name: nameTextField.text ?? "",
-            phoneNumber: phoneTextField.text ?? ""
+            phoneNumber: phoneTextField.text ?? "",
+            avatarURL: selectedImageURL
         )
         contactService.saveContact(contact: contact)
         delegate?.didSaveContact()
@@ -220,12 +221,16 @@ extension NewContactViewController {
 extension NewContactViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        picker.dismiss(animated: true, completion: nil)
         
         if let image = info[.originalImage] as? UIImage {
-            selectedImage = image
             avatarImageView.image = image
         }
+        
+        if let imageUrl = info[.imageURL] as? URL {
+            selectedImageURL = imageUrl
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

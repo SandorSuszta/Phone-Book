@@ -2,7 +2,7 @@ import UIKit
 
 final class ContactsViewController: UIViewController, NewContactViewControllerDelegate {
     
-    private var contacts: [User] = [] {
+    private var contacts: [Contact] = [] {
         didSet {
             contactsTableView.reloadData()
         }

@@ -14,7 +14,7 @@
 		79E216782A3E3A950091DA4D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 79E216762A3E3A950091DA4D /* LaunchScreen.storyboard */; };
 		79E216822A3E45A80091DA4D /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216812A3E45A80091DA4D /* NewContactViewController.swift */; };
 		79E216852A3E48A20091DA4D /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216842A3E48A20091DA4D /* ContactCell.swift */; };
-		79E216882A41B4950091DA4D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216872A41B4950091DA4D /* User.swift */; };
+		79E216882A41B4950091DA4D /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216872A41B4950091DA4D /* Contact.swift */; };
 		79E2168A2A41DDE90091DA4D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216892A41DDE90091DA4D /* SettingsViewController.swift */; };
 		79E2168D2A4200AE0091DA4D /* ContactService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2168C2A4200AE0091DA4D /* ContactService.swift */; };
 		79E2168F2A42119D0091DA4D /* RoundedImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E2168E2A42119D0091DA4D /* RoundedImageView.swift */; };
@@ -30,7 +30,7 @@
 		79E216792A3E3A950091DA4D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		79E216812A3E45A80091DA4D /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
 		79E216842A3E48A20091DA4D /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
-		79E216872A41B4950091DA4D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		79E216872A41B4950091DA4D /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		79E216892A41DDE90091DA4D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		79E2168C2A4200AE0091DA4D /* ContactService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactService.swift; sourceTree = "<group>"; };
 		79E2168E2A42119D0091DA4D /* RoundedImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImageView.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		79E216862A41B4820091DA4D /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				79E216872A41B4950091DA4D /* User.swift */,
+				79E216872A41B4950091DA4D /* Contact.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -195,7 +195,7 @@
 				79E216852A3E48A20091DA4D /* ContactCell.swift in Sources */,
 				79E216702A3E3A910091DA4D /* ContactsViewController.swift in Sources */,
 				79E2168A2A41DDE90091DA4D /* SettingsViewController.swift in Sources */,
-				79E216882A41B4950091DA4D /* User.swift in Sources */,
+				79E216882A41B4950091DA4D /* Contact.swift in Sources */,
 				79E2168D2A4200AE0091DA4D /* ContactService.swift in Sources */,
 				79E2166C2A3E3A910091DA4D /* AppDelegate.swift in Sources */,
 				79E216822A3E45A80091DA4D /* NewContactViewController.swift in Sources */,

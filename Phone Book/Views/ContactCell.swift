@@ -7,10 +7,10 @@ final class ContactCell: UITableViewCell {
     
     //MARK: - UI Elements
     
-    private let avatarImageView: UIImageView = {
-        let imageView = UIImageView()
+    private let avatarImageView: RoundedImageView = {
+        let imageView = RoundedImageView()
         imageView.image = UIImage(systemName: "person.crop.circle")
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -41,10 +41,16 @@ final class ContactCell: UITableViewCell {
     
     //MARK: - API
     
-    func configure(with model: User) {
-        imageView?.image = model.avatar
+    func configure(with model: Contact) {
         nameLabel.text = model.name
         phoneLabel.text = model.phoneNumber
+        
+        
+        if let image = UIImage(contentsOfFile: model.avatarURL?.path() ?? "") {
+            avatarImageView.image = image
+        } else {
+            avatarImageView.image = UIImage(systemName: "person.crop.circle")
+        }
     }
 }
 

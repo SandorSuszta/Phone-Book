@@ -10,8 +10,8 @@ final class ContactService {
     //MARK: -  API
     
     
-    func loadAllContacts() -> [User] {
-        var contacts: [User] = []
+    func loadAllContacts() -> [Contact] {
+        var contacts: [Contact] = []
         
         let fileManager = FileManager.default
         do {
@@ -20,9 +20,12 @@ final class ContactService {
             for fileURL in fileList {
                 if let contactDict = NSDictionary(contentsOf: fileURL) as? [String: Any],
                    let firstName = contactDict["firstName"] as? String,
-                   let phoneNumber = contactDict["phoneNumber"] as? String {
-                    let contact = User(name: firstName, phoneNumber: phoneNumber)
+                   let phoneNumber = contactDict["phoneNumber"] as? String,
+                   let avatarURL = contactDict["avatarURL"] as? String {
+                    let contact = Contact(name: firstName, phoneNumber: phoneNumber, avatarURL: URL(string: avatarURL))
                     contacts.append(contact)
+                } else {
+                    print("Error creating contact model")
                 }
             }
         } catch {
@@ -32,8 +35,7 @@ final class ContactService {
         return contacts
     }
 
-    
-    func saveContact(contact: User) {
+    func saveContact(contact: Contact) {
         
         if !FileManager.default.fileExists(atPath: contactsDirectory.path) {
             do {
@@ -49,7 +51,8 @@ final class ContactService {
         
         let contactDict: [String: Any] = [
             "firstName": contact.name,
-            "phoneNumber": contact.phoneNumber
+            "phoneNumber": contact.phoneNumber,
+            "avatarURL": contact.avatarURL?.absoluteString ?? ""
         ]
         
         let plistData = NSDictionary(dictionary: contactDict)

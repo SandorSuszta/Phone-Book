@@ -1,17 +1,17 @@
 import UIKit
 
-struct User {
+struct Contact {
     let name: String
     let phoneNumber: String
-    let avatar: UIImage
+    let avatarURL: URL?
     
     init(
         name: String,
         phoneNumber: String,
-        avatar: UIImage = UIImage()
+        avatarURL: URL? = nil
     ){
         self.name = name
         self.phoneNumber = phoneNumber
-        self.avatar = avatar
+        self.avatarURL = avatarURL
     }
 }
