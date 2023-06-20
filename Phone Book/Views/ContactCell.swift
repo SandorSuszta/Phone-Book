@@ -2,8 +2,8 @@ import UIKit
 
 final class ContactCell: UITableViewCell {
     
-    static let identifier = String(describing: ContactCell.self)
-    static let prefferedHeight: CGFloat = 60
+    static let reuseIdentifier = String(describing: ContactCell.self)
+    static let prefferedHeight: CGFloat = 64
     
     //MARK: - UI Elements
     
@@ -27,14 +27,25 @@ final class ContactCell: UITableViewCell {
         return label
     }()
     
+    //MARK: - Init
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        setupViewHierarchy()
+        setupConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     //MARK: - API
     
     func configure(with model: User) {
-        DispatchQueue.main.async {
-            self.imageView?.image = model.avatar
-            self.nameLabel.text = model.name
-            self.phoneLabel.text = model.phoneNumber
-        }
+        imageView?.image = model.avatar
+        nameLabel.text = model.name
+        phoneLabel.text = model.phoneNumber
+        
     }
 }
 
@@ -43,8 +54,8 @@ final class ContactCell: UITableViewCell {
 extension ContactCell {
     
     private enum Constants {
-        static let padding: CGFloat = 16
-        static let smallPadding: CGFloat = 8
+        static let padding: CGFloat = 8
+        static let smallPadding: CGFloat = 4
     }
     
     private func setupViewHierarchy() {
@@ -63,7 +74,7 @@ extension ContactCell {
             // Avatar image view constraints
             avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.padding),
             avatarImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            avatarImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -Constants.smallPadding),
+            avatarImageView.heightAnchor.constraint(equalTo: contentView.heightAnchor, constant: -2 * Constants.smallPadding),
             avatarImageView.widthAnchor.constraint(equalTo: avatarImageView.heightAnchor),
             
             // Name label constraints
