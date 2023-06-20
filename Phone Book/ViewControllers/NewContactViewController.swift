@@ -49,9 +49,13 @@ final class NewContactViewController: UIViewController {
     }()
     
     private lazy var addButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton(type: .roundedRect)
+        button.backgroundColor = .systemBlue
+        button.layer.cornerRadius = 8
+        button.setTitleColor(.white, for: .normal)
         button.setTitle("Add New Contact", for: .normal)
         button.addTarget(self, action: #selector(didTapButton), for: .touchUpInside)
+        button.titleLabel?.font = .systemFont(ofSize: 17, weight: .bold)
         return button
     }()
     
@@ -91,6 +95,7 @@ extension NewContactViewController {
     
     
     @objc private func didTapButton() {
+
     }
 }
 
@@ -111,6 +116,7 @@ extension NewContactViewController {
         view.addSubview(nameTextField)
         view.addSubview(phoneLabel)
         view.addSubview(phoneTextField)
+        view.addSubview(addButton)
     }
     
     private func setupConstraints() {
@@ -119,6 +125,7 @@ extension NewContactViewController {
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
         phoneLabel.translatesAutoresizingMaskIntoConstraints = false
         phoneTextField.translatesAutoresizingMaskIntoConstraints = false
+        addButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             
@@ -148,7 +155,12 @@ extension NewContactViewController {
             phoneTextField.topAnchor.constraint(equalTo: phoneLabel.bottomAnchor, constant: Constants.smallPadding),
             phoneTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.padding),
             phoneTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.padding),
-            phoneTextField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight)
+            phoneTextField.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight),
+            
+            addButton.topAnchor.constraint(equalTo: phoneTextField.bottomAnchor, constant: 2 * Constants.padding),
+            addButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: Constants.padding),
+            addButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -Constants.padding),
+            addButton.heightAnchor.constraint(equalToConstant: Constants.textFieldHeight)
         ])
     }
 }
