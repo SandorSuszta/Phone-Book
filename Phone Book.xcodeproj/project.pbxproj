@@ -15,6 +15,7 @@
 		79E216822A3E45A80091DA4D /* NewContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216812A3E45A80091DA4D /* NewContactViewController.swift */; };
 		79E216852A3E48A20091DA4D /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216842A3E48A20091DA4D /* ContactCell.swift */; };
 		79E216882A41B4950091DA4D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216872A41B4950091DA4D /* User.swift */; };
+		79E2168A2A41DDE90091DA4D /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79E216892A41DDE90091DA4D /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		79E216812A3E45A80091DA4D /* NewContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewContactViewController.swift; sourceTree = "<group>"; };
 		79E216842A3E48A20091DA4D /* ContactCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactCell.swift; sourceTree = "<group>"; };
 		79E216872A41B4950091DA4D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		79E216892A41DDE90091DA4D /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 			children = (
 				79E2166F2A3E3A910091DA4D /* ContactsViewController.swift */,
 				79E216812A3E45A80091DA4D /* NewContactViewController.swift */,
+				79E216892A41DDE90091DA4D /* SettingsViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -177,6 +180,7 @@
 			files = (
 				79E216852A3E48A20091DA4D /* ContactCell.swift in Sources */,
 				79E216702A3E3A910091DA4D /* ContactsViewController.swift in Sources */,
+				79E2168A2A41DDE90091DA4D /* SettingsViewController.swift in Sources */,
 				79E216882A41B4950091DA4D /* User.swift in Sources */,
 				79E2166C2A3E3A910091DA4D /* AppDelegate.swift in Sources */,
 				79E216822A3E45A80091DA4D /* NewContactViewController.swift in Sources */,

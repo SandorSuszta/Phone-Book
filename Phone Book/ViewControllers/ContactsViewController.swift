@@ -77,7 +77,7 @@ extension ContactsViewController {
     }
     
     @objc private func didTapAddCSettings() {
-        //TODO: handle tap
+        navigationController?.pushViewController(SettingsViewController(), animated: true)
     }
 }
 
