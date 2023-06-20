@@ -36,9 +36,13 @@ class SettingsViewController: UIViewController {
     //MARK: - Selectors
     
     @objc private func switchThemeChanged() {
-        
+        let scenes = UIApplication.shared.connectedScenes
+        let windowScene = scenes.first as? UIWindowScene
+        let window = windowScene?.windows.first
+        window?.overrideUserInterfaceStyle = window?.overrideUserInterfaceStyle == .dark ? .light : .dark
+        }
     }
-}
+
     //MARK: - Setup Views
 
 extension SettingsViewController {
