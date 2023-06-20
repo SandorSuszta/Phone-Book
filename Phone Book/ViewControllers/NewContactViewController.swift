@@ -11,7 +11,7 @@ final class NewContactViewController: UIViewController {
     
     weak var delegate: NewContactViewControllerDelegate?
     
-    private var selectedImageURL: URL?
+    private var selectedImage: UIImage?
     
     //MARK: - UI Elements
     
@@ -140,9 +140,10 @@ extension NewContactViewController {
     
     @objc private func didTapButton() {
         let contact = Contact(
+            id: UUID().uuidString,
             name: nameTextField.text ?? "",
             phoneNumber: phoneTextField.text ?? "",
-            avatarURL: selectedImageURL
+            avatar: selectedImage
         )
         contactService.saveContact(contact: contact)
         delegate?.didSaveContact()
@@ -224,10 +225,7 @@ extension NewContactViewController: UIImagePickerControllerDelegate, UINavigatio
         
         if let image = info[.originalImage] as? UIImage {
             avatarImageView.image = image
-        }
-        
-        if let imageUrl = info[.imageURL] as? URL {
-            selectedImageURL = imageUrl
+            selectedImage = image
         }
         
         picker.dismiss(animated: true, completion: nil)

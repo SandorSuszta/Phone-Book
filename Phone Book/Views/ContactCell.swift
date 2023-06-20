@@ -46,7 +46,7 @@ final class ContactCell: UITableViewCell {
         phoneLabel.text = model.phoneNumber
         
         
-        if let image = UIImage(contentsOfFile: model.avatarURL?.path() ?? "") {
+        if let image = model.avatar {
             avatarImageView.image = image
         } else {
             avatarImageView.image = UIImage(systemName: "person.crop.circle")

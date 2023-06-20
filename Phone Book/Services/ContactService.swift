@@ -1,4 +1,4 @@
-import Foundation
+import UIKit
 
 final class ContactService {
     
@@ -7,8 +7,11 @@ final class ContactService {
     private var contactsDirectory: URL { documentsDirectory.appendingPathComponent("Contacts")
     }
     
-    //MARK: -  API
+    private var photosDirectory: URL {
+        documentsDirectory.appendingPathComponent("Photos")
+    }
     
+    //MARK: -  API
     
     func loadAllContacts() -> [Contact] {
         var contacts: [Contact] = []
@@ -21,8 +24,9 @@ final class ContactService {
                 if let contactDict = NSDictionary(contentsOf: fileURL) as? [String: Any],
                    let firstName = contactDict["firstName"] as? String,
                    let phoneNumber = contactDict["phoneNumber"] as? String,
-                   let avatarURL = contactDict["avatarURL"] as? String {
-                    let contact = Contact(name: firstName, phoneNumber: phoneNumber, avatarURL: URL(string: avatarURL))
+                   let id = contactDict["id"] as? String {
+                    let image = loadImage(name: id)
+                    let contact = Contact(id: id, name: firstName, phoneNumber: phoneNumber, avatar: image)
                     contacts.append(contact)
                 } else {
                     print("Error creating contact model")
@@ -34,7 +38,7 @@ final class ContactService {
         
         return contacts
     }
-
+    
     func saveContact(contact: Contact) {
         
         if !FileManager.default.fileExists(atPath: contactsDirectory.path) {
@@ -46,16 +50,50 @@ final class ContactService {
             }
         }
         
-        let filename = "\(UUID().uuidString).plist"
+        let filename = "\(contact.id).plist"
         let fileURL = contactsDirectory.appendingPathComponent(filename)
         
         let contactDict: [String: Any] = [
+            "id": contact.id,
             "firstName": contact.name,
             "phoneNumber": contact.phoneNumber,
-            "avatarURL": contact.avatarURL?.absoluteString ?? ""
         ]
         
         let plistData = NSDictionary(dictionary: contactDict)
         plistData.write(to: fileURL, atomically: true)
+        
+        saveImage(name: contact.id, image: contact.avatar)
+    }
+    
+    //MARK: - Private methods
+    
+    private func saveImage(name: String, image: UIImage?) {
+        guard let image = image else { return }
+        
+        if !FileManager.default.fileExists(atPath: photosDirectory.path) {
+            do {
+                try FileManager.default.createDirectory(at: photosDirectory, withIntermediateDirectories: true, attributes: nil)
+            } catch {
+                print("Error creating photos directory: \(error.localizedDescription)")
+                return
+            }
+        }
+        
+        let fileURL = photosDirectory.appendingPathComponent("\(name).jpg")
+        if let imageData = image.jpegData(compressionQuality: 1) {
+            do {
+                try imageData.write(to: fileURL)
+            } catch {
+                print("Error saving image: \(error.localizedDescription)")
+            }
+        }
+    }
+    
+    private func loadImage(name: String) -> UIImage? {
+        let fileURL = photosDirectory.appendingPathComponent("\(name).jpg")
+        if let imageData = try? Data(contentsOf: fileURL) {
+            return UIImage(data: imageData)
+        }
+        return nil
     }
 }
